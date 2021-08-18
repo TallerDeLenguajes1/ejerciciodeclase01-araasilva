@@ -9,33 +9,47 @@ namespace Ejercicio1
         {
             Random rand = new Random();
             int numeroRandom = rand.Next(0, 100);
-            Console.WriteLine("Ingrese el numero: ");
-            int numeroUsuario = Convert.ToInt32(Console.ReadLine());
+            int numeroUsuario = -1;
 
-            while (EvaluarPosicion(numeroUsuario, numeroRandom) == false)
+            while (EvaluarPosicion(numeroRandom, numeroUsuario) == false)
             {
-                Console.WriteLine("Ingrese el numero: ");
-                numeroUsuario = Convert.ToInt32(Console.ReadLine());
-
+                try
+                {
+                    Console.WriteLine("Elija un numero: ");
+                    numeroUsuario = Convert.ToInt32(Console.ReadLine());
+                }
+                catch
+                {
+                    Console.WriteLine("Error! El valor ingresado es invalido");
+                    numeroUsuario = -1;
+                }
             }
         }
 
         public static bool EvaluarPosicion(int n, int m)
         {
-            if (n > m)
+            if(m == -1)
             {
-                Console.WriteLine("el numero es mas grande");
+                return false;
             }
-            if (n < m)
+            else
             {
-                Console.WriteLine("el numero es mas chico");
+                if (n > m)
+                {
+                    Console.WriteLine("el numero es mas grande");
+                }
+                if (n < m)
+                {
+                    Console.WriteLine("el numero es mas chico");
+                }
+                if (n == m)
+                {
+                    Console.WriteLine("encontraste el numero");
+                    return true;
+                }
+                return false;
             }
-            if (n == m)
-            {
-                Console.WriteLine("encontraste el numero");
-                return true;
-            }
-            return false;
+           
 
         }
     }
